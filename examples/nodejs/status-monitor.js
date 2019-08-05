@@ -25,8 +25,8 @@ function send (m) {
   const port = 12345
   const host = '127.0.0.1'
   let payload = JSON.stringify(m)
-  payload = nlPad(payload)
   payload = rlPad(payload)
+  payload = nlPad(payload)
   console.log('Sending over: ', { payload })
   server.send(payload, 0, payload.length, port, host, callback);
 }
@@ -68,6 +68,7 @@ const cursor_right = () => {
 
 // Each time we get a message, lets send one back.
 server.on('message', function (message, remote) {
+  console.log('Got a message')
   // Server usually sends one byte at a time, but maybe special keys can come through.
   // ea = up, eb = down
   if (message.length < 10) {
