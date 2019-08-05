@@ -3,8 +3,8 @@
 # Build the host instance
 #FROM alpine:3.10.1 AS build
 FROM debian:jessie-slim AS build
-RUN apt-get update \
-  && apt-get install gcc make
+RUN DEBIAN_FRONTEND=noninteractive apt-get update \
+  && apt-get install -y git gcc make
 
 WORKDIR /usr/src
 RUN git clone https://github.com/ahungry/rawterm /usr/src/rawterm \

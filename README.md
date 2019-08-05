@@ -39,15 +39,27 @@ end:
 Hint: Try running rawterm twice, with the ports flipped - you can see
 how they "talk" to each other.
 
+```
   ./rawterm 12345 127.0.0.1 12346 # In one term window
 
   ./rawterm 12346 127.0.0.1 12345 # In another term window
+```
 
 # Building
 
 ```sh
 make
 ```
+
+or, if you don't have a C compiler, or are trying this out on
+something other than GNU/Linux, you can also just use:
+
+```sh
+make docker-build
+make docker-run
+```
+
+Please note this container will bind to --net=host if used in that manner.
 
 # License
 
