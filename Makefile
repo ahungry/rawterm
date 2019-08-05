@@ -22,3 +22,9 @@ docs: docs/diagram.png
 
 docs/diagram.png: docs/diagram.dot
 	dot docs/diagram.dot -Tpng -o docs/diagram.png && feh -F docs/diagram.png
+
+docker-build: Dockerfile
+	docker build -t rawterm .
+
+docker-run: docker-build
+	docker run --rm -it --net=host --name=rawterm rawterm:latest
