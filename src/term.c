@@ -21,10 +21,13 @@ cursor_show (abuf *ab)
 }
 
 // TODO: Ensure x or y does not go out of bounds of window.
+// TODO: Figure out why when calling this it ends up sending to odd locations instead of 1,1
 void
-cursor_goto (abuf *ab, int x, int y)
+cursor_goto (abuf *ab, int a, int b)
 {
   char buf[32];
+  int x = 0;
+  int y = 0;
 
   snprintf (buf, sizeof (buf), "\x1b[%d;%dH", y + 1, x + 1);
   ab_append (ab, buf, strlen (buf));
