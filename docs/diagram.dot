@@ -1,0 +1,12 @@
+digraph g {
+        label="
+        The two nodes pass keypress events / resultant views back and forth.
+        "
+        forcelabels=true;
+
+        rawterm[label="View/Input handler (rawterm) [1]", xlabel="Renders view and handles keypress forwarding"];
+        backend[label="Backend listener [2]", xlabel="Keeps track of system state / dispatches on key presses."];
+
+        rawterm -> backend;
+        backend -> rawterm;
+}

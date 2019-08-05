@@ -17,3 +17,8 @@ $(OBJ)/%.o: $(SRC)/%.c
 run: rawterm.bin
 	reset
 	./$< 12345 127.0.0.1 12345
+
+docs: docs/diagram.png
+
+docs/diagram.png: docs/diagram.dot
+	dot docs/diagram.dot -Tpng -o docs/diagram.png && feh -F docs/diagram.png

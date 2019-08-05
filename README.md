@@ -8,6 +8,8 @@ In addition, it will forward any user keypresses to the outbound
 address/port (again, UDP) so that you could set it up in a system as
 diagramed below.
 
+![rawterm](https://github.com/ahungry/rawterm/blob/master/docs/diagram.png)
+
 # Usage
 
 ```sh
