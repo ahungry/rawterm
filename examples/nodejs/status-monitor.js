@@ -21,10 +21,11 @@ function rlPad (s) {
   return repeat(10 - x, ' ') + s
 }
 
-function send (m) {
+function send (s) {
   const port = 12345
   const host = '127.0.0.1'
-  let payload = JSON.stringify(m)
+  // let payload = JSON.stringify(m)
+  let payload = s
   payload = rlPad(payload)
   payload = nlPad(payload)
   console.log('Sending over: ', { payload })
@@ -77,7 +78,11 @@ server.on('message', function (message, remote) {
     if (0xEB === message[0]) message = cursor_down() + 'DOWN_ARROW'
     if (0xE8 === message[0]) message = cursor_left() + 'LEFT_ARROW'
     if (0xE9 === message[0]) message = cursor_right() + 'RIGHT_ARROW'
-    send("Greetings from js  - you pushed: " + message)
+    // https://misc.flogisoft.com/bash/tip_colors_and_formatting
+    const escCode = Buffer.from('1b', 'hex').toString('ascii')
+    const color = escCode + '[36m '
+    const color2 = escCode + '[91m '
+    send(color2 + "Greetings from js  - you pushed: " + color + message)
   }
   // send("Did you just push: " + message)
 })
