@@ -28,3 +28,9 @@ docker-build: Dockerfile
 
 docker-run: docker-build
 	docker run --rm -it --net=host --name=rawterm rawterm:latest
+
+docker-build-alpine: Dockerfile
+	docker build -t rawterm-alpine .
+
+docker-run-alpine: docker-build
+	docker run --rm -it --net=host --name=rawterm-alpine rawterm-alpine:latest

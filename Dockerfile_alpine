@@ -1,0 +1,15 @@
+# -*- mode: dockerfile -*-
+
+# Build the host instance
+FROM alpine:3.10.1 AS build
+RUN apk add --update git gcc make libc-dev
+
+WORKDIR /usr/src/rawterm
+COPY . /usr/src/rawterm
+RUN make
+
+FROM alpine:3.10.1
+COPY --from=build /usr/src/rawterm/rawterm.bin /usr/local/bin/rawterm
+WORKDIR /app
+
+CMD ["/usr/local/bin/rawterm", "12345", "127.0.0.1", "12346"]
