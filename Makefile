@@ -1,5 +1,5 @@
 CFLAGS=-Wall -Wextra -pedantic -std=gnu11
-LFLAGS=-lm -ldl -pthread
+LDFLAGS=-lm -ldl -pthread -Wl,-z,stack-size=1048576
 
 SRC := src
 OBJ := obj
@@ -8,7 +8,7 @@ SOURCES := $(wildcard $(SRC)/*.c)
 OBJECTS := $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SOURCES))
 
 rawterm.bin: $(OBJECTS)
-	$(CC) $^ -o $@ $(LFLAGS)
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 $(OBJ)/%.o: $(SRC)/%.c
 	$(CC) $(CFLAGS) -I$(SRC) -c $< -o $@
