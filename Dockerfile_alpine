@@ -6,6 +6,7 @@ RUN apk add --update git gcc make libc-dev
 
 WORKDIR /usr/src/rawterm
 COPY . /usr/src/rawterm
+RUN mkdir /usr/src/rawterm/obj
 RUN make
 
 FROM alpine:3.10.1
