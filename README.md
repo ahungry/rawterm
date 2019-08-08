@@ -30,6 +30,8 @@ end:
 - An ncurses like interface (map out term codes to a higher level
   language "sdk" like feature)
 
+![roguelike](https://github.com/ahungry/rawterm/blob/master/render.gif)
+
 # Usage
 
 ```sh
