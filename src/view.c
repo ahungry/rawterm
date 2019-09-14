@@ -130,7 +130,23 @@ editor_process_keypress ()
   struct addrinfo* res = 0;
   int fd = get_socket_fd (&res);
 
-  send_udp (fd, res, c);
+  if (ARROW_UP == c) send_udp (fd, res, "ARROW_UP");
+  if (ARROW_DOWN == c) send_udp (fd, res, "ARROW_DOWN");
+  if (ARROW_LEFT == c) send_udp (fd, res, "ARROW_LEFT");
+  if (ARROW_RIGHT == c) send_udp (fd, res, "ARROW_RIGHT");
+  if (DEL_KEY == c) send_udp (fd, res, "DEL_KEY");
+  if (HOME_KEY == c) send_udp (fd, res, "HOME_KEY");
+  if (END_KEY == c) send_udp (fd, res, "END_KEY");
+  if (PAGE_UP == c) send_udp (fd, res, "PAGE_UP");
+  if (PAGE_DOWN == c) send_udp (fd, res, "PAGE_DOWN");
+
+  // ASCII range codes can just go through as single letters.
+  if (c >= 0 && c <= 127)
+    {
+      char buf[1];
+      buf[0] = c;
+      send_udp (fd, res, buf);
+    }
 
   close (fd);
   // receive_udp (fd, res);

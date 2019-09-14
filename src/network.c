@@ -39,12 +39,11 @@ get_socket_fd (struct addrinfo** return_res)
 
 // Fire and forget some udp (we don't get anything back)
 void
-send_udp (int fd, struct addrinfo* res, int c)
+send_udp (int fd, struct addrinfo* res, char* buf)
 {
-  char buf[1];
-  buf[0] = c;
+  int len = strlen (buf);
 
-  if (sendto (fd, buf, sizeof (buf), 0,
+  if (sendto (fd, buf, len, 0,
               res->ai_addr, res->ai_addrlen) == -1)
     {
       die("sendto");

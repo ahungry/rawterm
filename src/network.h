@@ -28,7 +28,7 @@ int
 get_socket_fd (struct addrinfo** return_res);
 
 void
-send_udp (int fd, struct addrinfo* res, int c);
+send_udp (int fd, struct addrinfo* res, char* c);
 
 void
 echo (int sd);
