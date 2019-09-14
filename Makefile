@@ -18,6 +18,9 @@ run: rawterm.bin
 	reset
 	./$< 12345 127.0.0.1 12345
 
+install: rawterm.bin
+	cp rawterm.bin /usr/local/bin/rawterm 
+
 docs: docs/diagram.png
 
 docs/diagram.png: docs/diagram.dot
